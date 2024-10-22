@@ -1,0 +1,7 @@
+# 文件: environment.yml
+name: gdp_analysis
+dependencies:
+  - python=3.9
+  - pandas
+  - matplotlib
+  - jupyter
