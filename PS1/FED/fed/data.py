@@ -26,9 +26,18 @@ def clean_data(data):
     # Rename columns for consistency (optional)
     data.columns = [col.strip().lower().replace(" ", "_") for col in data.columns]
     
-    # Convert year column to integer (example)
-    if 'year' in data.columns:
-        data['year'] = data['year'].astype(int)
+    # Convert from wide format to long format (to have year and GDP in separate columns)
+    year_columns = [col for col in data.columns if col.isdigit()]  # Find all columns representing years
+    data = pd.melt(
+        data,
+        id_vars=['country_name', 'country_code', 'indicator_name', 'indicator_code'],
+        value_vars=year_columns,
+        var_name='year',
+        value_name='gdp'
+    )
+
+    # Convert year column to integer type
+    data['year'] = data['year'].astype(int)
     
     return data
 
