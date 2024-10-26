@@ -1,4 +1,7 @@
 # 文件: fed/data.py
+import polars as pl
+import pathlib as path 
+from typing import List 
 import pandas as pd
 
 def load_data(file_path):
@@ -31,4 +34,6 @@ def clean_data(data):
         data['year'] = data['year'].astype(int)
     
     return data
+
+
 
