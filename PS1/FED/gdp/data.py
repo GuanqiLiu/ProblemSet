@@ -1,8 +1,11 @@
 # 文件: fed/data.py
-import polars as pl
-import pathlib as path 
-from typing import List 
+
+# import polars as pl
+# import pathlib as path
+# from typing import List
+
 import pandas as pd
+
 
 def load_data(file_path):
     """
@@ -17,6 +20,7 @@ def load_data(file_path):
         print(f"Error loading data: {e}")
         return None
 
+
 def clean_data(data):
     """
     Clean the GDP data.
@@ -25,15 +29,13 @@ def clean_data(data):
     """
     # Remove rows with missing values
     data = data.dropna()
-    
+
     # Rename columns for consistency (optional)
-    data.columns = [col.strip().lower().replace(" ", "_") for col in data.columns]
-    
+    data.columns = [col.strip().lower().replace(" ", "_") for
+                    col in data.columns]
+
     # Convert year column to integer (example)
     if 'year' in data.columns:
         data['year'] = data['year'].astype(int)
-    
+
     return data
-
-
-
